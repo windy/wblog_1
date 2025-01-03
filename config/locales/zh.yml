@@ -1,7 +1,38 @@
 zh:
+  shared:
+    network_error:
+      network_error_title: "网络连接错误"
+      network_error_message: "无法连接到服务器，请检查网络连接后重试。"
+      retry: "重试"
+    error_message:
+      default: "发生错误，请重试。"
+    button:
+      loading: "加载中..."
   check_in:
     types:
       new_member: "新会员"
+      regular: "会员签到"
+    messages:
+      welcome: "欢迎回来！"
+    validation:
+      name_label: "姓名"
+      name_placeholder: "请输入姓名"
+      membership_type_label: "会员类型"
+      class_based: "次卡会员"
+      monthly: "月卡会员"
+      credits_label: "课时数"
+    messages:
+      submit: "签到"
+    messages:
+      success: "签到成功！祝您训练愉快！"
+      extra_check_in: "签到成功！这是额外签到，请联系管理员购买会员卡。"
+      duplicate_check_in: "您今天已在该时段签到过了。请选择其他时段或返回首页。"
+      member_not_found: "未找到该会员，请检查姓名或前往新会员签到。"
+      member_exists: "该姓名已被注册，请前往会员签到页面。如有疑问请联系管理员。"
+    validation:
+      invalid_name: "无效的姓名格式。姓名必须包含中文、英文或数字，且长度在2-50个字符之间。"
+      invalid_email: "请输入有效的邮箱地址。"
+      email_required: "请输入邮箱以验证身份。"
   activerecord:
     errors:
       messages:

@@ -1,0 +1,29 @@
+<%
+  # Default values
+  variant ||= 'red'
+  loading ||= false
+  disabled ||= false
+  type ||= 'button'
+  
+  button_class = button_classes(
+    variant: variant,
+    loading: loading,
+    additional_classes: local_assigns[:class]
+  )
+%>
+
+
+<button type="<%= type %>" 
+        class="<%= button_class %>"
+        disabled="<%= loading || disabled %>"
+        <%= local_assigns[:data] ? raw(local_assigns[:data].map { |k, v| "data-#{k}=\"#{v}\"" }.join(' ')) : '' %>
+        <%= local_assigns[:aria] ? raw(local_assigns[:aria].map { |k, v| "aria-#{k}=\"#{v}\"" }.join(' ')) : '' %>>
+  <% if loading %>
+    <div class="flex items-center justify-center">
+      <%= render 'shared/loading_spinner', class: 'h-5 w-5' %>
+      <span class="ml-2"><%= t('shared.button.loading') %></span>
+    </div>
+  <% else %>
+    <%= content %>
+  <% end %>
+</button>

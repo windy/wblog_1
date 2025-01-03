@@ -4,7 +4,7 @@ RSpec.describe CheckIn, type: :model do
   describe 'validations' do
     it { should validate_presence_of(:checkin_type) }
     it { should validate_presence_of(:checkin_time) }
-    it { should validate_inclusion_of(:checkin_type).in_array(%w[normal extra new_member]) }
+    it { should validate_inclusion_of(:checkin_type).in_array(%w[normal extra]) }
   end
 
   describe 'associations' do
@@ -15,10 +15,12 @@ RSpec.describe CheckIn, type: :model do
     context 'when member is a new member' do
       let(:member) { create(:member, :new_member) }
       
-      it 'marks the first check-in as new_member' do
+      it 'marks the first check-in as extra and tracks new member status' do
         check_in = build(:check_in, member: member)
         check_in.valid?
-        expect(check_in.checkin_type).to eq('new_member')
+        expect(check_in.checkin_type).to eq('extra')
+        expect(check_in.is_first_checkin).to be true
+        check_in.save!
         expect(member.reload.is_new_member).to be false
       end
     end

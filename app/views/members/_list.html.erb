@@ -1,0 +1,28 @@
+<div class="bg-white shadow overflow-hidden sm:rounded-lg">
+  <div class="px-4 py-5 sm:px-6 flex justify-between items-center">
+    <h3 class="text-lg leading-6 font-medium text-gray-900"><%= t('.title') %></h3>
+    <%= link_to new_admin_member_path do %>
+      <%= render 'shared/button', 
+          variant: 'blue', 
+          content: t('.add_member'),
+          class: 'inline-flex w-auto',
+          data: { turbolinks: false } %>
+    <% end %>
+  </div>
+  <div class="border-t border-gray-200">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('.name') %></th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('.phone') %></th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('.membership_type') %></th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('.remaining_credits') %></th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('.actions') %></th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <%= render partial: 'admin/members/member', collection: @members %>
+      </tbody>
+    </table>
+  </div>
+</div>
