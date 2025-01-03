@@ -1,4 +1,33 @@
 en:
+  activerecord:
+    errors:
+      messages:
+        blank: "can't be blank"
+        not_a_number: "is not a number"
+        inclusion: "is not included in the list"
+        greater_than_or_equal_to: "must be greater than or equal to %{count}"
+        must_exist: "must exist"
+      models:
+        member:
+          attributes:
+            name:
+              blank: "can't be blank"
+            membership_type:
+              inclusion: "is not included in the list"
+            daily_checkins_allowed:
+              blank: "can't be blank"
+            membership_expiry:
+              blank: "can't be blank"
+            remaining_credits:
+              greater_than_or_equal_to: "must be greater than or equal to %{count}"
+        check_in:
+          attributes:
+            member:
+              required: "must exist"
+            checkin_time:
+              blank: "can't be blank"
+            checkin_type:
+              inclusion: "is not included in the list"
   comment: "Comment"
   edit: 'Edit'
   destroy: 'Destroy'

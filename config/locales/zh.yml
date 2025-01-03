@@ -1,0 +1,44 @@
+zh:
+  activerecord:
+    errors:
+      messages:
+        blank: "不能为空"
+        not_a_number: "不是一个数字"
+        inclusion: "不在列表中"
+        greater_than_or_equal_to: "必须大于或等于 %{count}"
+        must_exist: "必须存在"
+        invalid: "格式无效"
+      models:
+        member:
+          attributes:
+            name:
+              blank: "姓名不能为空"
+            membership_type:
+              inclusion: "会员类型不在列表中"
+            daily_checkins_allowed:
+              blank: "每日签到次数不能为空"
+            membership_expiry:
+              blank: "会员到期日期不能为空"
+            remaining_credits:
+              greater_than_or_equal_to: "剩余课时必须大于或等于 %{count}"
+            email:
+              invalid: "邮箱格式无效"
+        check_in:
+          attributes:
+            member:
+              required: "会员必须存在"
+            checkin_time:
+              blank: "签到时间不能为空"
+            checkin_type:
+              inclusion: "签到类型不在列表中"
+  comment: "评论"
+  edit: '编辑'
+  destroy: '删除'
+  announce_at: "发布于 "
+  qr_code: '二维码'
+  visited_count: "浏览次数 "
+  nocontent: "没有更多内容"
+  prev: '← 上一篇'
+  next: '下一篇 →'
+  none: '无'
+  qrcodetips: '用手机继续阅读或分享到微信朋友圈'

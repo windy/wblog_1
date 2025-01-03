@@ -42,6 +42,11 @@ RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   
+  # Set default locale for tests
+  config.before(:each) do
+    I18n.locale = :en
+  end
+  
   # Include Factory Bot syntax methods
   config.include FactoryBot::Syntax::Methods
 

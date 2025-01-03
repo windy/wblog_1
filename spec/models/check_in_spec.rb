@@ -38,4 +38,55 @@ RSpec.describe CheckIn, type: :model do
       end
     end
   end
+
+  describe 'duplicate check-in validation' do
+    let(:member) { create(:member, :single_daily) }
+    let(:time) { Time.current.beginning_of_hour + 30.minutes }
+
+    context 'when attempting duplicate check-in in same time slot' do
+      it 'does not allow the same member to check in twice in the same time slot' do
+        create(:check_in, member: member, checkin_time: time)
+        duplicate_check_in = build(:check_in, member: member, checkin_time: time + 15.minutes)
+        
+        expect(duplicate_check_in).not_to be_valid
+        expect(duplicate_check_in.errors[:checkin_time]).to include('already has a check-in in this time slot')
+      end
+    end
+
+    context 'when checking in different time slots' do
+      it 'allows check-in in a different time slot' do
+        create(:check_in, member: member, checkin_time: time)
+        next_slot_check_in = build(:check_in, member: member, checkin_time: time + 2.hours)
+        
+        expect(next_slot_check_in).to be_valid
+      end
+    end
+  end
+
+  describe 'error handling' do
+    it 'validates presence of member' do
+      check_in = build(:check_in, member: nil)
+      expect(check_in).not_to be_valid
+      expect(check_in.errors[:member]).to include(I18n.t('activerecord.errors.messages.must_exist'))
+    end
+
+    it 'validates presence of checkin_time' do
+      check_in = build(:check_in, checkin_time: nil)
+      expect(check_in).not_to be_valid
+      expect(check_in.errors[:checkin_time]).to include(I18n.t('errors.messages.blank'))
+    end
+
+    it 'validates checkin_type inclusion' do
+      check_in = build(:check_in)
+      check_in.checkin_type = 'invalid_type'
+      expect(check_in).not_to be_valid
+      expect(check_in.errors[:checkin_type]).to include(I18n.t('errors.messages.inclusion'))
+    end
+
+    it 'handles invalid time slot format' do
+      check_in = build(:check_in)
+      check_in.checkin_time = 'invalid_time'
+      expect(check_in).not_to be_valid
+    end
+  end
 end

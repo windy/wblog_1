@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_01_03_024918) do
+ActiveRecord::Schema.define(version: 2025_01_03_032900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,8 @@ ActiveRecord::Schema.define(version: 2025_01_03_024918) do
     t.integer "daily_checkins_allowed"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "remaining_credits"
+    t.boolean "is_new_member"
   end
 
   create_table "photos", force: :cascade do |t|
