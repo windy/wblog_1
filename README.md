@@ -31,11 +31,11 @@ Some [screenshots](#screenshots)
 
 ### Features
 
-* Responsive, iPhone, iPad, Notebook, PC, all are supported
-* QR Code, Like button make your article easily sharing with your friends
-* Inpendent comment system, subscribe system, that all belong to you
-* Markdown supported, code highlight, especially for programmer, like you
-* Personalize it, commercialize it, it all depends on you
+* Responsive, iPhone, iPad, Notebook, PC, all are supported.
+* QR Code, Like button make your article easily sharing with your friends.
+* Independent comment system, subscribe system, that all belong to you.
+* Markdown supported, code highlight, especially for programmer, like you.
+* Personalize it, commercialize it, it all depends on you.
 
 ### Goal
 
