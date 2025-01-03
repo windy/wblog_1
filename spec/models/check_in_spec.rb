@@ -4,7 +4,7 @@ RSpec.describe CheckIn, type: :model do
   describe 'validations' do
     it { should validate_presence_of(:checkin_type) }
     it { should validate_presence_of(:checkin_time) }
-    it { should validate_inclusion_of(:checkin_type).in_array(%w[normal extra]) }
+    it { should validate_inclusion_of(:checkin_type).in_array(%w[normal extra new_member]) }
   end
 
   describe 'associations' do
@@ -12,6 +12,17 @@ RSpec.describe CheckIn, type: :model do
   end
 
   describe '#set_checkin_type' do
+    context 'when member is a new member' do
+      let(:member) { create(:member, :new_member) }
+      
+      it 'marks the first check-in as new_member' do
+        check_in = build(:check_in, member: member)
+        check_in.valid?
+        expect(check_in.checkin_type).to eq('new_member')
+        expect(member.reload.is_new_member).to be false
+      end
+    end
+
     context 'when member can check in normally' do
       let(:member) { create(:member, :single_daily) }
       
@@ -22,7 +33,7 @@ RSpec.describe CheckIn, type: :model do
       end
     end
 
-    context 'when member cannot check in normally' do
+    context 'when member cannot check in normally due to daily limit' do
       let(:member) { create(:member, :single_daily) }
       let(:first_check_in) { create(:check_in, member: member, checkin_type: 'normal') }
       
@@ -33,6 +44,16 @@ RSpec.describe CheckIn, type: :model do
       
       it 'sets checkin_type to extra' do
         check_in = build(:check_in, member: member, checkin_type: nil)
+        check_in.valid?
+        expect(check_in.checkin_type).to eq('extra')
+      end
+    end
+
+    context 'when class-based member has no remaining credits' do
+      let(:member) { create(:member, :class_based_no_credits) }
+      
+      it 'sets checkin_type to extra' do
+        check_in = build(:check_in, member: member)
         check_in.valid?
         expect(check_in.checkin_type).to eq('extra')
       end

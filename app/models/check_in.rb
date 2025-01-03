@@ -1,7 +1,7 @@
 class CheckIn < ApplicationRecord
   belongs_to :member, required: true
   
-  validates :checkin_type, presence: true, inclusion: { in: %w[normal extra] }
+  validates :checkin_type, presence: true, inclusion: { in: %w[normal extra new_member] }
   validates :checkin_time, presence: true
   validate :no_duplicate_checkin_in_time_slot
   
@@ -17,8 +17,8 @@ class CheckIn < ApplicationRecord
     return unless should_set_checkin_type?
 
     if member.is_new_member?
+      self.checkin_type = 'new_member'
       member.mark_as_not_new
-      self.checkin_type = 'extra'
       return
     end
 

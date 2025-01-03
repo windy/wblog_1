@@ -1,4 +1,7 @@
 zh:
+  check_in:
+    types:
+      new_member: "新会员"
   activerecord:
     errors:
       messages:

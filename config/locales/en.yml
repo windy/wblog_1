@@ -1,4 +1,7 @@
 en:
+  check_in:
+    types:
+      new_member: "New Member"
   activerecord:
     errors:
       messages:
