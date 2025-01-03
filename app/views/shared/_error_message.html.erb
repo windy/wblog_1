@@ -1,0 +1,4 @@
+<%# Usage: render 'shared/error_message', message: 'Custom error message' %>
+<div class="text-red-600 p-4 bg-red-50 rounded-lg">
+  <%= message || t('shared.error_message.default') %>
+</div>

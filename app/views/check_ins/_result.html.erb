@@ -1,0 +1,28 @@
+<div class="text-center">
+  <div class="mb-4">
+    <% if status[:success] %>
+      <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
+        <svg class="h-6 w-6 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+      <h3 class="text-lg font-medium text-gray-900 mb-2"><%= t('.success_title') %></h3>
+      <% if status[:is_extra] %>
+        <p class="text-sm text-gray-600"><%= t('.extra_check_in') %></p>
+      <% end %>
+    <% else %>
+      <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100 mb-4">
+        <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </div>
+      <h3 class="text-lg font-medium text-gray-900 mb-2"><%= t('.error_title') %></h3>
+      <p class="text-sm text-gray-600"><%= status[:message] %></p>
+    <% end %>
+  </div>
+
+  <div class="mt-6">
+    <%= link_to t('.back_to_home'), root_path, 
+        class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-muaythai-blue hover:bg-muaythai-blue-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-muaythai-blue" %>
+  </div>
+</div>

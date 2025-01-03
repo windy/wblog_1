@@ -50,3 +50,4 @@ yarn-debug.log*
 .env
 .byebug_history
 .DS_Store
+vendor/bundle/

@@ -1,0 +1,13 @@
+<header class="bg-white shadow-sm">
+  <nav class="container mx-auto px-4 py-3">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center">
+        <%= link_to 'JR Check-in', root_path, class: 'text-xl font-bold text-muaythai-blue' %>
+      </div>
+      <div class="flex items-center space-x-4">
+        <%= link_to t('.check_in'), new_check_in_path, class: 'text-gray-600 hover:text-muaythai-blue' %>
+        <%= link_to t('.admin'), admin_path, class: 'text-gray-600 hover:text-muaythai-blue' %>
+      </div>
+    </div>
+  </nav>
+</header>

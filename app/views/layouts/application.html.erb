@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JR's Check-in System</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="min-h-screen bg-gray-100 flex flex-col">
+      <%= render 'shared/header' %>
+      <main class="flex-1 container mx-auto px-4 py-6">
+        <div data-controller="network-error" class="hidden" data-network-error-target="container">
+          <%= render 'shared/network_error' %>
+        </div>
+        <%= yield %>
+      </main>
+      <%= render 'shared/footer' %>
+    </div>
+  </body>
+</html>

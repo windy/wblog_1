@@ -24,6 +24,10 @@ Rails.application.routes.draw do
   resources :photos, only: [:create]
 
   get '/about', to: 'home#about'
+  get '/member', to: 'check_ins#new', as: :member_check_in
+  get '/new-member', to: 'check_ins#new_member', as: :new_member_check_in
+  resources :check_ins, only: [:create]
+  resources :members, only: [:index, :show]
 
   namespace :admin do
     get 'login', to: 'sessions#new', as: :login

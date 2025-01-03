@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_15_090427) do
+ActiveRecord::Schema.define(version: 2025_01_03_032900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,15 @@ ActiveRecord::Schema.define(version: 2021_06_15_090427) do
     t.index ["name"], name: "index_administrators_on_name", unique: true
   end
 
+  create_table "check_ins", force: :cascade do |t|
+    t.bigint "member_id", null: false
+    t.string "checkin_type"
+    t.datetime "checkin_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["member_id"], name: "index_check_ins_on_member_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -81,6 +90,18 @@ ActiveRecord::Schema.define(version: 2021_06_15_090427) do
     t.index ["post_id"], name: "index_likes_on_post_id"
   end
 
+  create_table "members", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "membership_type"
+    t.datetime "membership_expiry"
+    t.integer "daily_checkins_allowed"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "remaining_credits"
+    t.boolean "is_new_member"
+  end
+
   create_table "photos", force: :cascade do |t|
     t.string "image"
     t.datetime "created_at", precision: 6, null: false
@@ -97,4 +118,5 @@ ActiveRecord::Schema.define(version: 2021_06_15_090427) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "check_ins", "members"
 end

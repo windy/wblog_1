@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.1'
+ruby '3.0.2'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 gem 'puma', '~> 4.x'
 gem 'sass-rails', '>= 6'
@@ -64,6 +64,7 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'shoulda-matchers', '~> 5.0'
 end
 
 group :test do

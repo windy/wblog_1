@@ -1,4 +1,67 @@
 en:
+  shared:
+    network_error:
+      network_error_title: "Network Error"
+      network_error_message: "Unable to connect to server. Please check your network connection and try again."
+      retry: "Retry"
+    error_message:
+      default: "An error occurred. Please try again."
+    button:
+      loading: "Loading..."
+  check_in:
+    types:
+      new_member: "New Member"
+      regular: "Member Check-in"
+    messages:
+      welcome: "Welcome back!"
+    validation:
+      name_label: "Name"
+      name_placeholder: "Enter your name"
+      membership_type_label: "Membership Type"
+      class_based: "Class-based"
+      monthly: "Monthly"
+      credits_label: "Credits"
+    messages:
+      submit: "Check In"
+    messages:
+      success: "Check-in successful! Enjoy your training!"
+      extra_check_in: "Check-in successful! This is an extra check-in, please contact admin to purchase a membership."
+      duplicate_check_in: "You have already checked in for this class type today. Please choose another class time or return home."
+      member_not_found: "Member not found, please check the name or proceed to new member check-in."
+      member_exists: "This name is already registered, please go to member check-in page. Contact admin if you have any questions."
+    validation:
+      invalid_name: "Invalid name format. Name must contain Chinese characters, English letters, or numbers, and be between 2-50 characters."
+      invalid_email: "Please enter a valid email address."
+      email_required: "Please enter email for verification."
+  activerecord:
+    errors:
+      messages:
+        blank: "can't be blank"
+        not_a_number: "is not a number"
+        inclusion: "is not included in the list"
+        greater_than_or_equal_to: "must be greater than or equal to %{count}"
+        must_exist: "must exist"
+      models:
+        member:
+          attributes:
+            name:
+              blank: "can't be blank"
+            membership_type:
+              inclusion: "is not included in the list"
+            daily_checkins_allowed:
+              blank: "can't be blank"
+            membership_expiry:
+              blank: "can't be blank"
+            remaining_credits:
+              greater_than_or_equal_to: "must be greater than or equal to %{count}"
+        check_in:
+          attributes:
+            member:
+              required: "must exist"
+            checkin_time:
+              blank: "can't be blank"
+            checkin_type:
+              inclusion: "is not included in the list"
   comment: "Comment"
   edit: 'Edit'
   destroy: 'Destroy'

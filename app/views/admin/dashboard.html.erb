@@ -1,0 +1,54 @@
+<div class="min-h-screen bg-gray-100">
+  <%# Navigation %>
+  <nav class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex">
+          <div class="flex-shrink-0 flex items-center">
+            <svg class="h-8 w-8 text-muaythai-blue" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span class="ml-2 text-xl font-bold">管理后台</span>
+          </div>
+          <div class="ml-6 flex space-x-8">
+            <% tabs = {
+              'members' => '会员管理',
+              'checkins' => '签到记录',
+              'import' => '数据导入',
+              'export' => '数据导出',
+              'errors' => '错误监控'
+            } %>
+            
+            <% tabs.each do |tab, label| %>
+              <%= link_to label, 
+                  "#", 
+                  data: { tab: tab },
+                  class: "inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium #{@active_tab == tab ? 'border-muaythai-blue text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <%# Content %>
+  <main class="py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div data-tab-content="members" class="<%= @active_tab == 'members' ? '' : 'hidden' %>">
+        <%= render 'admin/members/list' %>
+      </div>
+      <div data-tab-content="checkins" class="<%= @active_tab == 'checkins' ? '' : 'hidden' %>">
+        <%= render 'admin/check_ins/list', show_filter: true, limit: 10 %>
+      </div>
+      <div data-tab-content="import" class="<%= @active_tab == 'import' ? '' : 'hidden' %>">
+        <%= render 'admin/data/import' %>
+      </div>
+      <div data-tab-content="export" class="<%= @active_tab == 'export' ? '' : 'hidden' %>">
+        <%= render 'admin/data/export' %>
+      </div>
+      <div data-tab-content="errors" class="<%= @active_tab == 'errors' ? '' : 'hidden' %>">
+        <%= render 'admin/errors/monitor' %>
+      </div>
+    </div>
+  </main>
+</div>
